@@ -1,9 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const vehicleRoutes = require('./src/routes/vehicleRoutes');
 require('dotenv').config();
 
 const app = express();
 app.use(express.json());
+app.use('/v1/vehicle',vehicleRoutes);
 
 const PORT = process.env.PORT;
 mongoose.connect(process.env.MONGODB_URL)

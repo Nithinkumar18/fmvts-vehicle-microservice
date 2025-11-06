@@ -19,8 +19,8 @@ const customLevels = {
 const logger = createLogger({
     levels: customLevels.levels,
     level: 'http',
-    format: fromat.combine(
-            fromat.colorize(),
+    format: format.combine(
+            format.colorize(),
             format.timestamp(),
              format.printf(({timestamp,level,message}) => `${timestamp} ${level}: ${message}`)
     ),
