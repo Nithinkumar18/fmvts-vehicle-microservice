@@ -30,7 +30,12 @@ const info = {
     DRIVER_STATUS: "active",
     DRIVER_ASSIGNMENT_FAIL: "Driver allocation rejected: driver is currently engaged with another vehicle or inactive for the day.",
     DRIVER_ASSIGNMENT_SUCCESS: "Driver assignment operation completed successfully.",
-    VEHCILE_STATUS_NOT_ACTIVE: "Assignment failed — the driver cannot be assigned to an inactive vehicle."
+    VEHCILE_STATUS_NOT_ACTIVE: "Assignment failed — the driver cannot be assigned to an inactive vehicle.",
+    QUEUE_CONN_SUCESS: "Queue connection successfull",
+    USER_EVENT: "Vehicle assignment details to driver service sent successfully",
+    DRIVER_MSG_QUEUE: "Publish-Vehicle-Details",
+    QUEUE_CON_FAIL: "Connection to message-queue Failed",
+    QUEUE_CON_CLOSE: "Queue Connection closed"
 }
 
 module.exports = info;
