@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Nithinkumar18/Fleet-Management-And-Vehicle-Tracking-System#readme",
   "dependencies": {
+    "amqplib": "^0.10.9",
     "axios": "^1.13.2",
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
