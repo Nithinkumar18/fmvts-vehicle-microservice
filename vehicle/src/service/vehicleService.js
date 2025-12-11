@@ -97,7 +97,6 @@ const assignOrUnAssignDriver = async (vehicleIdNumber, driverId, action) => {
                         logger.info(`SERVICE - ${rsInfo.SERVICE} : ${rsInfo.DRIVER_ASSIGNMENT_SUCCESS}`);
                         const { fullName, contactNumber, licenseNumber } = dProfile;
                         const { regNum, VIN } = assignDriver;
-                        console.log(assignDriver);
                         await sendDriverDetails(assignDriver.userId, assignDriver._id);
                         return {
                             fullName,
