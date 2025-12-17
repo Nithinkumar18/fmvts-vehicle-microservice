@@ -133,10 +133,30 @@ const assignOrUnAssignDriver = async (vehicleIdNumber, driverId, action) => {
     }
 
 }
+
+const updateTravelledDistance = async(vehicleId,distanceTravelled) => {
+
+    try{
+       const updatedDistance = await vehicle.findByIdAndUpdate({_id:vehicleId},{$push:{tripsData:distanceTravelled}},{new:true});
+       if(updatedDistance.tripsData.includes(distanceTravelled)){
+             logger.info(`SERVICE - ${rsInfo.SERVICE} : ${rsInfo.VEHICLE_WITH_TRIP_DATA}`);
+             return updatedDistance;
+       }
+       else{
+          logger.info(`SERVICE - ${rsInfo.SERVICE} : ${rsInfo.VEHICLE_WITH_TRIP_DATA_FAIL}`);
+          return null;
+       }
+    }
+    catch(err){
+         throw err;
+    }
+
+}
 module.exports = {
     registerVehicle,
     vehicleInfo,
     updateVehicleInfo,
     retireVehicle,
-    assignOrUnAssignDriver
+    assignOrUnAssignDriver,
+    updateTravelledDistance
 }
