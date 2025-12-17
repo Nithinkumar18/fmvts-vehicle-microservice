@@ -48,6 +48,11 @@ const vehicleSchema = new mongoose.Schema({
       enum: ["Active","In-Active"],
       default: "In-Active"
     },
+    
+    tripsData:{
+      type: [Number],
+      default: [] 
+    },
 
     userId:{
        type: String,
