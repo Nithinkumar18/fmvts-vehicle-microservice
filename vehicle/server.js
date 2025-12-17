@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const vehicleRoutes = require('./src/routes/vehicleRoutes');
 require('dotenv').config();
 const logger = require('./src/loggers/logger');
-const info = require('./src/constants/responseInfo')
+const info = require('./src/constants/responseInfo');
+const {retainTripDetailsToVehicle} = require('./src/events/subscribeTripDetails');
 
 const app = express();
 app.use(express.json());
@@ -16,4 +17,5 @@ mongoose.connect(process.env.MONGODB_URL)
     app.listen(PORT,() => {
         logger.info(`${info.SERVICE} started on the PORT ${PORT} 🚛`);
     })
+    retainTripDetailsToVehicle();
 })
