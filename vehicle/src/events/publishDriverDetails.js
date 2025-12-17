@@ -8,7 +8,7 @@ const sendDriverDetails = async (userId, vehicleId) => {
   try {
     connection = await amqp.connect(process.env.MESSAGE_QUEUE_URL);
     channel = await connection.createChannel();
-    logger.info(`SERVICE - ${resInfo.QUEUE} : ${resInfo.QUEUE_CONN_SUCESS}`);
+    logger.info(`SERVICE - ${process.env.QUEUE} : ${resInfo.QUEUE_CONN_SUCESS}`);
     await channel.assertQueue(process.env.QUEUE, { durable: true });
     const vehicleData = {
       user_id: userId,
@@ -17,11 +17,11 @@ const sendDriverDetails = async (userId, vehicleId) => {
     channel.sendToQueue(process.env.QUEUE, Buffer.from(JSON.stringify(vehicleData)));
     logger.info(`SERVICE - ${resInfo.DRIVER_MSG_QUEUE} : ${resInfo.USER_EVENT}`);
   } catch (err) {
-    logger.error(`SERVICE - ${resInfo.QUEUE} : ${resInfo.QUEUE_CON_FAIL}`, err);
+    logger.error(`SERVICE - ${process.env.QUEUE} : ${resInfo.QUEUE_CON_FAIL}`, err);
   }
   finally {
 
-    logger.info(`SERVICE - ${resInfo.QUEUE} : ${resInfo.QUEUE_CON_CLOSE}`);
+    logger.info(`SERVICE - ${process.env.QUEUE} : ${resInfo.QUEUE_CON_CLOSE}`);
     await channel.close();
     await connection.close();
   }

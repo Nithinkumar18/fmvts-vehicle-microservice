@@ -99,7 +99,6 @@ const handleAssignUnAssign = async(req,res) => {
       return res.status(httpCons.INTERNAL_SERVER_ERROR).json({Message:resInfo.VEHICLE_UNASSIGNMENT_ASSIGN_FAIL},err);
   }
 }
-
 module.exports = {
     handleVehicleRegistration,
     handleVehicleInfo,
