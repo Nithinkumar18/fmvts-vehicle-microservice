@@ -40,7 +40,10 @@ const info = {
     VEHICLE_WITH_TRIP_DATA_FAIL:"Cannot update trips details to the vehicle, Please try again",
     TRIP_DATA_SYNC: "Trip data has been received successfully from trip service",
     TRIP_SYNC_SUCC: "Trip data has been synced successfully with associated vehicle",
-    TRIP_SYNC_FAIL: "Unable to sync trip data with the vehicle"
+    TRIP_SYNC_FAIL: "Unable to sync trip data with the vehicle",
+    MAINTENANCE_DATA_CHECK_SUCCESS:"vehicles details fetched successfully",
+    MAINTENANCE_DATA_CHECK:"fetching the vehiles that are under maintenance",
+    MAINTENANCE_DATA_CHECK_FAIL:"Unable to fetch vehicles data that are under maintenance"
 }
 
 module.exports = info;
