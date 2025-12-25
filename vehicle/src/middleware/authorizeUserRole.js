@@ -19,7 +19,6 @@ const authorizeRole = (elgibleRoles) => {
         }
     }
     catch(err){
-           console.log(err);
            return res.status(httpStatusCons.INTERNAL_SERVER_ERROR).json({message:respInfo.ERROR_VALIDATING_ROLE,Error:err.message});
     }
     }
