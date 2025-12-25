@@ -152,11 +152,42 @@ const updateTravelledDistance = async(vehicleId,distanceTravelled) => {
     }
 
 }
+
+const maintenanceCheck = async() => {
+    try{
+       logger.info(`SERVICE - ${rsInfo.SERVICE} : ${rsInfo.MAINTENANCE_DATA_CHECK}`); 
+       const vehiclesUnderMaintenance =  await vehicle.aggregate([
+                                              {
+                                                $unwind:"$tripsData"
+                                              },
+                                              {
+                                                $group:{
+                                                    _id:"$_id",
+                                                    regNum:{$first:"$regNum"},
+                                                    distanceTravelled:{$sum:"$tripsData"}
+                                                }
+                                              },
+                                              {
+                                                $project:{
+                                                    _id:0,
+                                                    regNum:1,
+                                                    distanceTravelled:1
+                                                   }
+                                              }
+                                            ]);
+       logger.info(`SERVICE - ${rsInfo.SERVICE} : ${rsInfo.MAINTENANCE_DATA_CHECK_SUCCESS}`); 
+        return vehiclesUnderMaintenance;
+    }
+    catch(err){
+       throw err;
+    }
+}
 module.exports = {
     registerVehicle,
     vehicleInfo,
     updateVehicleInfo,
     retireVehicle,
     assignOrUnAssignDriver,
-    updateTravelledDistance
+    updateTravelledDistance,
+    maintenanceCheck
 }

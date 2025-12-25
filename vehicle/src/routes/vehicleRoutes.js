@@ -1,15 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const vehcileController = require('../controller/vehicleController');
+const vehicleController = require('../controller/vehicleController');
 const {authorizeRole} = require('../middleware/authorizeUserRole');
 
 
-router.post('/registration',authorizeRole(["admin","fleet_manager"]),vehcileController.handleVehicleRegistration);
-router.get('/vhc/:vid',authorizeRole(["admin","fleet_manager"]),vehcileController.handleVehicleInfo);
-router.get('/status/:_vid',authorizeRole(["admin","fleet_manager"]),vehcileController.handleVehicleStatusInfo);
-router.put('/vhc-upd/:vehicleId',authorizeRole(["fleet_manager"]),vehcileController.handleVehicleUpdate);
-router.put('/vhc-engage/:vin',authorizeRole(["fleet_manager"]),vehcileController.handleAssignUnAssign);
-router.delete('/retire/:vehicleVID',authorizeRole(["fleet_manager"]),vehcileController.handleVehicleRetirement);
+router.post('/registration',authorizeRole(["admin","fleet_manager"]),vehicleController.handleVehicleRegistration);
+router.get('/vhc/:vid',authorizeRole(["admin","fleet_manager"]),vehicleController.handleVehicleInfo);
+router.get('/status/:_vid',authorizeRole(["admin","fleet_manager"]),vehicleController.handleVehicleStatusInfo);
+router.get('/travelDistance',authorizeRole(["fleet_manager"]),vehicleController.handleVechileMaintenanceCheck)
+router.put('/vhc-upd/:vehicleId',authorizeRole(["fleet_manager"]),vehicleController.handleVehicleUpdate);
+router.put('/vhc-engage/:vin',authorizeRole(["fleet_manager"]),vehicleController.handleAssignUnAssign);
+router.delete('/retire/:vehicleVID',authorizeRole(["fleet_manager"]),vehicleController.handleVehicleRetirement);
 
 
 module.exports = router;

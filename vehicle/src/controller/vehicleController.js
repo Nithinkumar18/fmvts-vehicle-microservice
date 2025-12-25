@@ -99,12 +99,26 @@ const handleAssignUnAssign = async(req,res) => {
       return res.status(httpCons.INTERNAL_SERVER_ERROR).json({Message:resInfo.VEHICLE_UNASSIGNMENT_ASSIGN_FAIL},err);
   }
 }
+
+const handleVechileMaintenanceCheck = async(req,res) => {
+  try{
+      logger.info(`SERVICE - ${resInfo.SERVICE} : ${req.path}`);
+      const vehiclesList = await vehicleService.maintenanceCheck();
+      logger.info(`SERVICE - ${resInfo.SERVICE} : ${resInfo.MAINTENANCE_DATA_CHECK_SUCCESS}`);
+      return res.status(httpCons.SUCCESS).json(vehiclesList); 
+  }
+  catch(err){
+    logger.error(`SERVICE - ${resInfo.SERVICE} : ${resInfo.MAINTENANCE_DATA_CHECK_FAIL}`);
+     return res.status(httpCons.INTERNAL_SERVER_ERROR).json(err.message);
+  }
+}
 module.exports = {
     handleVehicleRegistration,
     handleVehicleInfo,
     handleVehicleUpdate,
     handleVehicleRetirement,
     handleVehicleStatusInfo,
-    handleAssignUnAssign
+    handleAssignUnAssign,
+    handleVechileMaintenanceCheck
 
 }
